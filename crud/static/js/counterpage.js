@@ -288,7 +288,7 @@ t2p5decrement.onclick = function(){
 };
 
 submitbutton.onclick = function(){
-q  fetch('/dataRetrieval', {
+  fetch('/dataRetrieval', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
