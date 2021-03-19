@@ -1,0 +1,29 @@
+body {
+  background-color: white;
+}
+h1 {
+  color: red;
+}
+.float-container{
+  border: 3px solid white;
+  padding:20px;
+}
+.Team1{
+  margin: 10px;
+  width: 50%;
+  float:left;
+  padding: 20px;
+  border:2px solid red;
+
+}
+
+.Team2{
+  margin: 10px;
+  width: 50%;
+  float:left;
+  padding: 20px;
+  border: 2px solid blue;
+
+}
+
+

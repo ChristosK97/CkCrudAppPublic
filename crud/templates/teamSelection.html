@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="/static/css/teamSelection.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <h1  style="text-align:center;">Team Selection</h1>
+</head>
+<body>
+<div class="float-container">
+    <div class="Team1">
+        <div class="green">Team1</div>
+    <form id="teamSelection" action="gamePage" method="POST" name="teamPlayerData">
+
+    <label for="t1player1">Choose a player</label>
+    <select id="t1player1" name="t1player1"><option value="empty"></option></select>
+    <label for="t1player2">Choose a player</label>
+    <select id="t1player2" name="t1player2"><option value="empty"></option></select>
+    <label for="t1player3">Choose a player</label>
+    <select id="t1player3" name="t1player3"><option value="empty"></option></select>
+    <label for="t1player4">Choose a player</label>
+    <select id="t1player4" name="t1player4"><option value="empty"></option></select>
+    <label for="t1player5">Choose a player</label>
+    <select id="t1player5" name="t1player5"><option value="empty"></option></select>
+    </div>
+    <div class="Team2">
+        <div class="blue">Team2</div>
+    <label for="t2player1">Choose a player</label>
+    <select id="t2player1" name="t2player1"><option value="empty"></option></select>
+    <label for="t2player2">Choose a player</label>
+    <select id="t2player2" name="t2player2"><option value="empty"></option></select>
+    <label for="t2player3">Choose a player</label>
+    <select id="t2player3" name="t2player3"><option value="empty"></option></select>
+    <label for="t2player4">Choose a player</label>
+    <select id="t2player4" name="t2player4"><option value="empty"></option></select>
+    <label for="t2player5">Choose a player</label>
+    <select id="t2player5" name="t2player5"><option value="empty"></option></select>
+    </div>
+</div>
+<div>
+  <input type="submit" value="Submit">
+</div>
+
+{% csrf_token %}
+</form>
+
+<script src="{% static 'js/teamSelection.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
