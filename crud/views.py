@@ -2,7 +2,7 @@ from django.shortcuts import render
 from crud.models import players
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-
+import json
 
 def teamSelection(request):
 
@@ -57,8 +57,9 @@ def gamePage(request):
 @csrf_exempt
 def dataRetrieval(request):
     if request.method == 'POST':
-        items = list(request.POST.dict())
-        print(items)
+        body = json.loads(request.body)
+        print(body)
+        print(body['name'])
 
         return JsonResponse({'test':"yee"}, safe=False)
 

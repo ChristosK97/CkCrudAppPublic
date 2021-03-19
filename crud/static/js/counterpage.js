@@ -288,13 +288,13 @@ t2p5decrement.onclick = function(){
 };
 
 submitbutton.onclick = function(){
-  fetch('../../dataRetrieval', {
+q  fetch('/dataRetrieval', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      // 'Accept': 'application/json',
     },
-    data: JSON.stringify({
+    body: JSON.stringify({
       name: 'USER 1',
       phone: 'yessir',
     })
