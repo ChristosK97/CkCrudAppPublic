@@ -11,7 +11,7 @@ def teamSelection(request):
 def getPlayers(request):
     playerList = players.objects.values_list('name')
     data = list(playerList)
-    print(data)
+
 
     return JsonResponse(data, safe=False)
 
@@ -37,7 +37,6 @@ def gamePage(request):
     if request.method == 'POST':
         gameDict = request.POST.items()
         for label, player in gameDict:
-            print(label, player)
             if label.startswith('tname'):
                 teamNames.append(player)
                 continue
@@ -47,7 +46,6 @@ def gamePage(request):
             elif label.startswith('t1p'):
                 t1playerList.append(player)
                 t1tagList.append(label)
-                print(label, player)
             elif label.startswith('t2p'):
                 t2playerList.append(player)
         while len(t2playerList) < 5:
@@ -123,9 +121,7 @@ def gamePage(request):
 
 
 
-    print(t1playerList)
-    print(t2playerList)
-    print(teamNames)
+
 
 
 
