@@ -1,0 +1,1 @@
+web: gunicorn chrisAndPeterBets.wsgi --log-file -
