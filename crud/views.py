@@ -3,7 +3,9 @@ from crud.models import players, game, player_game_scoreboard
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.contrib.auth.decorators import login_required
 
+@login_required()
 def teamSelection(request):
 
     return render(request, 'teamSelection.html')
@@ -15,6 +17,7 @@ def getPlayers(request):
 
     return JsonResponse(data, safe=False)
 
+@login_required()
 def addPlayer(request):
 
     if request.method == 'POST':
@@ -26,6 +29,7 @@ def addPlayer(request):
 
     return render(request,'addPlayer.html')
 
+@login_required()
 def gamePage(request):
     activeGame = game.objects.filter(is_active=True)
     activePlayers = player_game_scoreboard.objects.filter(is_active=True)
@@ -130,6 +134,7 @@ def gamePage(request):
 
     return render(request,'gamePage.html', {'t1players': t1playerList, 'tags': t1tagList, 't2players': t2playerList, 'tnames': teamNames})
 
+@login_required()
 @csrf_exempt
 def dataRetrieval(request):
     activeGame = game.objects.filter(is_active=True)

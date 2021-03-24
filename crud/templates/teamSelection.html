@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+<div class="topnav">
+    <a class="active" href="{% url 'teamSelection' %}">Team Selection</a>
+    <a class="active" href="{% url 'addPlayer' %}">Add Player</a>
+
+</div>
 
 {% load static %}
 
+
 <head>
     <link rel="stylesheet" href="/static/css/teamSelection.css">
+
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>squad up</title>
+
     <h1  style="text-align:center;">Team Selection</h1>
 </head>
 <body>

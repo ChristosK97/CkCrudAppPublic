@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<div class="topnav">
+    <a class="active" href="{% url 'teamSelection' %}">Team Selection</a>
+    <a class="active" href="{% url 'addPlayer' %}">Add Player</a>
 
-
+</div>
+{% load static %}
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>BRIM</title>
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
 </head>
 <body>
   <div class="main">
@@ -17,31 +21,31 @@
     <button id="t1techdecrement">-</button>
     <button id="t1techtotal">Tech pts: </button>
     </h1>
-    <button id="t1player1">{{ t1players.0 }}</button>
+    <button id="t1p1">{{ t1players.0 }}</button>
     <button id="t1p1increment">+</button>
     <button id="t1p1decrement">-</button>
     <button id="t1p1Points">total pts: </button>
     </div>
     <div>
-    <button id="t1player2">{{ t1players.1 }}</button>
+    <button id="t1p2">{{ t1players.1 }}</button>
     <button id="t1p2increment">+</button>
     <button id="t1p2decrement">-</button>
     <button id="t1p2Points">total pts: </button>
     </div>
     <div>
-    <button id="t1player3">{{ t1players.2 }}</button>
+    <button id="t1p3">{{ t1players.2 }}</button>
     <button id="t1p3increment">+</button>
     <button id="t1p3decrement">-</button>
     <button id="t1p3Points">total pts: </button>
     </div>
     <div>
-    <button id="t1player4">{{ t1players.3 }}</button>
+    <button id="t1p4">{{ t1players.3 }}</button>
     <button id="t1p4increment">+</button>
     <button id="t1p4decrement">-</button>
     <button id="t1p4Points">total pts: </button>
     </div>
     <div>
-    <button id="t1player5">{{ t1players.4 }}</button>
+    <button id="t1p5">{{ t1players.4 }}</button>
     <button id="t1p5increment">+</button>
     <button id="t1p5decrement">-</button>
     <button id="t1p5Points">total pts: </button>
@@ -53,31 +57,31 @@
     <button id="t2techdecrement">-</button>
     <button id="t2techtotal">Tech pts: </button>
     </h1>
-    <button id="t2player1">{{ t2players.0 }}</button>
+    <button id="t2p1">{{ t2players.0 }}</button>
     <button id="t2p1increment">+</button>
     <button id="t2p1decrement">-</button>
     <button id="t2p1Points">total pts: </button>
     </div>
     <div>
-    <button id="t2player2">{{ t2players.1 }}</button>
+    <button id="t2p2">{{ t2players.1 }}</button>
     <button id="t2p2increment">+</button>
     <button id="t2p2decrement">-</button>
     <button id="t2p2Points">total pts: </button>
     </div>
     <div>
-    <button id="t2player3">{{ t2players.2 }}</button>
+    <button id="t2p3">{{ t2players.2 }}</button>
     <button id="t2p3increment">+</button>
     <button id="t2p3decrement">-</button>
     <button id="t2p3Points">total pts: </button>
     </div>
     <div>
-    <button id="t2player4">{{ t2players.3 }}</button>
+    <button id="t2p4">{{ t2players.3 }}</button>
     <button id="t2p4increment">+</button>
     <button id="t2p4decrement">-</button>
     <button id="t2p4Points">total pts: </button>
     </div>
     <div>
-    <button id="t2player5">{{ t2players.4 }}</button>
+    <button id="t2p5">{{ t2players.4 }}</button>
     <button id="t2p5increment">+</button>
     <button id="t2p5decrement">-</button>
     <button id="t2p5Points">total pts: </button>

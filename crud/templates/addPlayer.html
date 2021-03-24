@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html>
+{% load static %}
+<head>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<title>New Challenger?</title>
+<div class="topnav">
+    <a class="active" href="{% url 'teamSelection' %}">Team Selection</a>
+    <a class="active" href="{% url 'addPlayer' %}">Add Player</a>
+
+</div>
 <body>
 
 <h2>We got a new player?</h2>
