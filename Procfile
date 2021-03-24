@@ -1,1 +1,1 @@
-web: gunicorn chrisAndPeterBets.wsgi --log-file -
+web: gunicorn mycrudapp.wsgi --log-file -
