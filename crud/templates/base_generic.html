@@ -12,11 +12,11 @@
   <div class="main">
 
     <div>
-    <h3>Team 1 Score: <button id="t1total"></button>
+    <h1>{{ tnames.0 }} score: <button id="t1total"></button>
     <button id="t1techincrement">+</button>
     <button id="t1techdecrement">-</button>
     <button id="t1techtotal">Tech pts: </button>
-    </h3>
+    </h1>
     <button id="t1player1">{{ t1players.0 }}</button>
     <button id="t1p1increment">+</button>
     <button id="t1p1decrement">-</button>
@@ -48,11 +48,11 @@
     </div>
   <div>
     <div>
-    <h4>Team 2 Score: <button id="t2total"></button>
+    <h1>{{ tnames.1 }} score: <button id="t2total"></button>
     <button id="t2techincrement">+</button>
     <button id="t2techdecrement">-</button>
     <button id="t2techtotal">Tech pts: </button>
-    </h4>
+    </h1>
     <button id="t2player1">{{ t2players.0 }}</button>
     <button id="t2p1increment">+</button>
     <button id="t2p1decrement">-</button>
@@ -85,6 +85,8 @@
     </div>
   <h5><button id="submitpage" value="Submit">Submit</button></h5>
   </div>
+  <input type="hidden" id="t1name" value={{ tnames.0 }}>
+  <input type="hidden" id="t2name" value={{ tnames.1 }}>
 {% load static %}
     <script src="{% static 'js/counterpage.js' %}"></script>
 </body>

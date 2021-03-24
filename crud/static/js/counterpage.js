@@ -1,49 +1,60 @@
-
+var t1name = document.getElementById("t1name");
+var t1p1name = document.getElementById("t1player1").textContent;
 var t1p1increment = document.getElementById("t1p1increment");
 var t1p1decrement = document.getElementById("t1p1decrement");
 var t1p1pts = document.getElementById("t1p1Points"),
   t1p1count = 0;
 
+var t1p2name = document.getElementById("t1player2").textContent;
 var t1p2increment = document.getElementById("t1p2increment");
 var t1p2decrement = document.getElementById("t1p2decrement");
 var t1p2pts = document.getElementById("t1p2Points"),
   t1p2count = 0;
 
+var t1p3name = document.getElementById("t1player3").textContent;
 var t1p3increment = document.getElementById("t1p3increment");
 var t1p3decrement = document.getElementById("t1p3decrement");
 var t1p3pts = document.getElementById("t1p3Points"),
   t1p3count = 0;
 
+var t1p4name = document.getElementById("t1player4").textContent;
 var t1p4increment = document.getElementById("t1p4increment");
 var t1p4decrement = document.getElementById("t1p4decrement");
 var t1p4pts = document.getElementById("t1p4Points"),
   t1p4count = 0;
 
+var t1p5name = document.getElementById("t1player5").textContent;
 var t1p5increment = document.getElementById("t1p5increment");
 var t1p5decrement = document.getElementById("t1p5decrement");
 var t1p5pts = document.getElementById("t1p5Points"),
   t1p5count = 0;
 
+var t2name = document.getElementById("t2name");
+var t2p1name = document.getElementById("t2player1").textContent;
 var t2p1increment = document.getElementById("t2p1increment");
 var t2p1decrement = document.getElementById("t2p1decrement");
 var t2p1pts = document.getElementById("t2p1Points"),
   t2p1count = 0;
 
+var t2p2name = document.getElementById("t2player2").textContent;
 var t2p2increment = document.getElementById("t2p2increment");
 var t2p2decrement = document.getElementById("t2p2decrement");
 var t2p2pts = document.getElementById("t2p2Points"),
   t2p2count = 0;
 
+var t2p3name = document.getElementById("t2player3").textContent;
 var t2p3increment = document.getElementById("t2p3increment");
 var t2p3decrement = document.getElementById("t2p3decrement");
 var t2p3pts = document.getElementById("t2p3Points"),
   t2p3count = 0;
 
+var t2p4name = document.getElementById("t2player4").textContent;
 var t2p4increment = document.getElementById("t2p4increment");
 var t2p4decrement = document.getElementById("t2p4decrement");
 var t2p4pts = document.getElementById("t2p4Points"),
   t2p4count = 0;
 
+var t2p5name = document.getElementById("t2player5").textContent;
 var t2p5increment = document.getElementById("t2p5increment");
 var t2p5decrement = document.getElementById("t2p5decrement");
 var t2p5pts = document.getElementById("t2p5Points"),
@@ -295,14 +306,25 @@ submitbutton.onclick = function(){
       // 'Accept': 'application/json',
     },
     body: JSON.stringify({
-      name: 'USER 1',
-      phone: 'yessir',
+
+      team1tech: t1techcount,
+      team2tech: t2techcount,
+      [t1p1name]: t1p1count,
+      [t1p2name]: t1p2count,
+      [t1p3name]: t1p3count,
+      [t1p4name]: t1p4count,
+      [t1p5name]: t1p5count,
+      [t2p1name]: t2p1count,
+      [t2p2name]: t2p2count,
+      [t2p3name]: t2p3count,
+      [t2p4name]: t2p4count,
+      [t2p5name]: t2p5count,
     })
 }).then(res => {
    return res.json()
 })
 .then(data => console.log(data))
 .catch(error => console.log(error))
-
+location.replace('/')
 };
 
