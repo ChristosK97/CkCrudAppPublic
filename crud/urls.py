@@ -9,5 +9,6 @@ urlpatterns = [
     path('gamePage', views.gamePage, name='gamePage'),
     path('getPlayers', views.getPlayers, name='getPlayers'),
     path('dataRetrieval', views.dataRetrieval, name='dataRetrieval'),
-    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico')))
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico'))),
+    path('stats', views.stats, name='stats'),
 ]

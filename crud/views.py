@@ -177,3 +177,42 @@ def dataRetrieval(request):
 
     else:
         return HttpResponse('no sir')
+
+def stats(request):
+    completeList = []
+
+
+    playerList = players.objects.all().values_list('name', flat=True)
+    gameList = player_game_scoreboard.objects.filter(is_active=False)
+    # perPlayer = gameList.filter(player='Christos')
+
+    for player in playerList:
+        subList = []
+        sum = 0
+        pointsPerPlayer = gameList.filter(player=player).values_list('points', flat=True)
+        print(pointsPerPlayer)
+        for i in pointsPerPlayer:
+
+            sum = sum + i
+        print('this the sum', sum)
+        print('herewego', len(pointsPerPlayer))
+        if sum <= 0:
+            continue
+        else:
+
+
+            subList.append(player)
+            subList.append(sum)
+            subList.append(round(sum/len(pointsPerPlayer),2))
+            subList.append(len(pointsPerPlayer))
+
+
+
+            completeList.append(subList)
+    print(completeList)
+
+
+
+
+
+    return render(request, 'stats.html', {'completeList': completeList})
