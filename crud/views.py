@@ -143,7 +143,7 @@ def dataRetrieval(request):
     #use gameid to update rows of player games that are active and change from is active to false
     if request.method == 'POST':
         body = json.loads(request.body)
-        print(body)
+
         for keys,values in body.items():
             if keys == 'team1tech':
                 enterTech = player_game_scoreboard(
@@ -190,12 +190,11 @@ def stats(request):
         subList = []
         sum = 0
         pointsPerPlayer = gameList.filter(player=player).values_list('points', flat=True)
-        print(pointsPerPlayer)
+
         for i in pointsPerPlayer:
 
             sum = sum + i
-        print('this the sum', sum)
-        print('herewego', len(pointsPerPlayer))
+
         if sum <= 0:
             continue
         else:
@@ -209,7 +208,7 @@ def stats(request):
 
 
             completeList.append(subList)
-    print(completeList)
+
 
 
 
