@@ -394,7 +394,11 @@ submitagain.onclick = function(){
 })
 .then(data => console.log(data))
 .catch(error => console.log(error))
-setTimeout(function(){ location.reload(false); }, 3000);
+setTimeout(function(){ t1techcount = 0, t2techcount = 0, t1p1count = 0, t1p2count = 0, t1p3count = 0, t1p4count = 0, t1p5count = 0,t2p1count = 0, t2p2count = 0, t2p3count = 0, t2p4count = 0, t2p5count =0, t1totalcount = 0, t2totalcount = 0,
+ t1total.innerHTML = " "
+ t2total.innerHTML = " "
+ t1techtotal.innerHTML = "Tech pts: ", t2techtotal.innerHTML = "Tech pts: ", t1p1pts.innerHTML = "total pts: ", t1p2pts.innerHTML = "total pts: ", t1p3pts.innerHTML = "total pts: ", t1p4pts.innerHTML = "total pts: ", t1p5pts.innerHTML = "total pts: ",
+ t2p1pts.innerHTML = "total pts: ", t2p2pts.innerHTML = "total pts: ", t2p3pts.innerHTML = "total pts: ", t2p4pts.innerHTML = "total pts: ", t2p5pts.innerHTML = "total pts: "; }, 3000);
 }
 };
 
