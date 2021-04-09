@@ -394,7 +394,7 @@ submitagain.onclick = function(){
 })
 .then(data => console.log(data))
 .catch(error => console.log(error))
-setTimeout(function(){ location.reload(); }, 3000);
+setTimeout(function(){ location.reload(true); }, 3000);
 }
 };
 
