@@ -19,38 +19,40 @@
     <div class="team1">
       <div>
     <h1>{{ tnames.0 }} score: <text id="t1total"></text>
+      <button id="t1techdecrement">-</button>
       <button id="t1techincrement">+</button>
-    <button id="t1techdecrement">-</button>
       <button id="t1techtotal">Tech pts: </button>
     </h1>
+        </div>
+      <div class="yeah">
     <text id="t1p1">{{ t1players.0 }}</text>
+        <button id="t1p1decrement">-</button>
     <button id="t1p1increment">+</button>
-    <button id="t1p1decrement">-</button>
-    <text id="t1p1Points">total pts: </text>
+        <text id="t1p1Points">total pts: 0</text>
     </div>
-    <div>
+    <div class="yeah">
     <text id="t1p2">{{ t1players.1 }}</text>
-    <button id="t1p2increment">+</button>
     <button id="t1p2decrement">-</button>
-    <text id="t1p2Points">total pts: </text>
+    <button id="t1p2increment">+</button>
+    <text id="t1p2Points">total pts: 0</text>
     </div>
     <div>
     <text id="t1p3">{{ t1players.2 }}</text>
-    <button id="t1p3increment">+</button>
     <button id="t1p3decrement">-</button>
-    <text id="t1p3Points">total pts: </text>
+    <button id="t1p3increment">+</button>
+    <text id="t1p3Points">total pts: 0</text>
     </div>
     <div>
     <text id="t1p4">{{ t1players.3 }}</text>
-    <button id="t1p4increment">+</button>
     <button id="t1p4decrement">-</button>
-    <text id="t1p4Points">total pts: </text>
+    <button id="t1p4increment">+</button>
+    <text id="t1p4Points">total pts: 0</text>
     </div>
     <div>
     <text id="t1p5">{{ t1players.4 }}</text>
-    <button id="t1p5increment">+</button>
     <button id="t1p5decrement">-</button>
-    <text id="t1p5Points">total pts: </text>
+    <button id="t1p5increment">+</button>
+    <text id="t1p5Points">total pts: 0</text>
     </div>
 
 
@@ -58,42 +60,45 @@
   <div>
     <div>
     <h1>{{ tnames.1 }} score: <text id="t2total"></text>
-    <button id="t2techincrement">+</button>
     <button id="t2techdecrement">-</button>
+    <button id="t2techincrement">+</button>
     <button id="t2techtotal">Tech pts: </button>
     </h1>
     <text id="t2p1">{{ t2players.0 }}</text>
-    <button id="t2p1increment">+</button>
     <button id="t2p1decrement">-</button>
-    <text id="t2p1Points">total pts: </text>
+    <button id="t2p1increment">+</button>
+    <text id="t2p1Points">total pts: 0</text>
     </div>
     <div>
     <text id="t2p2">{{ t2players.1 }}</text>
-    <button id="t2p2increment">+</button>
     <button id="t2p2decrement">-</button>
-    <text id="t2p2Points">total pts: </text>
+    <button id="t2p2increment">+</button>
+    <text id="t2p2Points">total pts: 0</text>
     </div>
     <div>
     <text id="t2p3">{{ t2players.2 }}</text>
-    <button id="t2p3increment">+</button>
     <button id="t2p3decrement">-</button>
-    <text id="t2p3Points">total pts: </text>
+    <button id="t2p3increment">+</button>
+    <text id="t2p3Points">total pts: 0</text>
     </div>
     <div>
     <text id="t2p4">{{ t2players.3 }}</text>
-    <button id="t2p4increment">+</button>
     <button id="t2p4decrement">-</button>
-    <text id="t2p4Points">total pts: </text>
+    <button id="t2p4increment">+</button>
+    <text id="t2p4Points">total pts: 0</text>
     </div>
     <div>
     <text id="t2p5">{{ t2players.4 }}</text>
-    <button id="t2p5increment">+</button>
     <button id="t2p5decrement">-</button>
-    <text id="t2p5Points">total pts: </text>
+    <button id="t2p5increment">+</button>
+    <text id="t2p5Points">total pts: 0</text>
     </div>
     </div>
-  <h5><button id="submitpage" value="Submit">Submit</button></h5>
-  </div>
+  <h5><button id="submitpage" value="Submit">Submit</button>
+  <button id="submitagain" value="Submit">Submit and Play again!</button>
+  </h5>
+
+    </div>
   <input type="hidden" id="t1name" value={{ tnames.0 }}>
   <input type="hidden" id="t2name" value={{ tnames.1 }}>
 {% load static %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from crud.models import players, game, player_game_scoreboard
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -139,10 +139,14 @@ def gamePage(request):
 def dataRetrieval(request):
     activeGame = game.objects.filter(is_active=True)
     gameId = activeGame.values('id')
+
+    clonePlayers = player_game_scoreboard.objects.filter(is_active=True)
     #create query for game table to recieve game id
     #use gameid to update rows of player games that are active and change from is active to false
     if request.method == 'POST':
         body = json.loads(request.body)
+
+
 
         for keys,values in body.items():
             if keys == 'team1tech':
@@ -162,21 +166,61 @@ def dataRetrieval(request):
                     game=gameId[0]['id'],
                 )
                 enterTech.save()
+            elif keys == 'gameNumber':
+                continue
             else:
                 if keys == 'None':
                     continue
-                player_game_scoreboard.objects.filter(player=keys, is_active=True).update(
-                    points=values,
-                    is_active=False,
-                )
+                elif body['gameNumber'] == 1:
 
-        activeGame = game.objects.filter(is_active=True).update(is_active=False)
 
-        return JsonResponse({'test':"yee"}, safe=False)
+                    newPlayer = player_game_scoreboard.objects.get(is_active=True, player=keys)
+                    player_game_scoreboard.objects.filter(player=keys, is_active=True).update(
+                        points=values,
+                        is_active=False,
+                    )
+                    newPlayer.pk = None
+                    newPlayer.is_active = True
+                    newPlayer.points = 0
+                    newPlayer.game = int((gameId[0]['id']) + 1)
+                    newPlayer.save()
 
+
+                else:
+                    player_game_scoreboard.objects.filter(player=keys, is_active=True).update(
+                        points=values,
+                        is_active=False,
+                    )
+
+
+        # Updated current active game
+        newGame = game.objects.get(is_active=True)
+
+
+
+
+        # game.objects.filter(is_active=True).update(is_active=False)
+
+
+        if body['gameNumber'] == 1:
+            newGame.is_active = False
+            newGame.save()  # saving game to be done
+            # Cloning game
+            newGame.pk = None
+            newGame.is_active = True
+            newGame.save()
+        else:
+            newGame.is_active = False
+            newGame.save()  # saving game to be done
+
+        return JsonResponse({'test': "yee"}, safe=False)
 
     else:
+
         return HttpResponse('no sir')
+
+
+
 
 def stats(request):
     completeList = []

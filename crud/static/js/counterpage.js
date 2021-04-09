@@ -78,6 +78,7 @@ var t2total = document.getElementById("t2total"),
   t2totalcount = 0;
 
 var submitbutton = document.getElementById("submitpage");
+var submitagain = document.getElementById("submitagain");
 
 t1techincrement.onclick = function(){
   t1techcount += 1;
@@ -327,7 +328,10 @@ for (i=0; i < playerVariables.length; i++){
 }
 
 submitbutton.onclick = function(){
-  fetch('/dataRetrieval', {
+  let gameNumber = 0;
+  var confirmation = confirm("Are you sure the game is over?");
+  if (confirmation == true) {
+    fetch('/dataRetrieval', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -337,6 +341,7 @@ submitbutton.onclick = function(){
 
       team1tech: t1techcount,
       team2tech: t2techcount,
+      gameNumber: gameNumber,
       [t1p1name]: t1p1count,
       [t1p2name]: t1p2count,
       [t1p3name]: t1p3count,
@@ -353,6 +358,46 @@ submitbutton.onclick = function(){
 })
 .then(data => console.log(data))
 .catch(error => console.log(error))
-
+setTimeout(function(){ location.replace('/'); }, 3000);
+}
 };
+
+
+submitagain.onclick = function(){
+  let gameNumber = 1;
+  var confirmation = confirm("Run that back?");
+  if (confirmation == true) {
+    fetch('/dataRetrieval', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      // 'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+
+      team1tech: t1techcount,
+      team2tech: t2techcount,
+      gameNumber: gameNumber,
+      [t1p1name]: t1p1count,
+      [t1p2name]: t1p2count,
+      [t1p3name]: t1p3count,
+      [t1p4name]: t1p4count,
+      [t1p5name]: t1p5count,
+      [t2p1name]: t2p1count,
+      [t2p2name]: t2p2count,
+      [t2p3name]: t2p3count,
+      [t2p4name]: t2p4count,
+      [t2p5name]: t2p5count,
+    })
+}).then(res => {
+   return res.json()
+})
+.then(data => console.log(data))
+.catch(error => console.log(error))
+setTimeout(function(){ location.reload(); }, 3000);
+}
+};
+
+
+
 
