@@ -7,8 +7,15 @@ from django.contrib.auth.decorators import login_required
 
 @login_required()
 def teamSelection(request):
-
-    return render(request, 'teamSelection.html')
+    playerCheck = game.objects.filter(is_active=True).exists()
+    gameStatus = ''
+    if playerCheck:
+        gameStatus = "True"
+        print("yes theres a game")
+    else:
+        gameStatus = "False"
+        print("no sir")
+    return render(request, 'teamSelection.html', {'gameStatus': gameStatus})
 @login_required()
 def alternateSelection(request):
     playerList = players.objects.values_list('name', flat=True)

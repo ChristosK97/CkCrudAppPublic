@@ -65,7 +65,14 @@
 
 {% csrf_token %}
 </form>
-
+    <div2 id="activeGame" class="activeGameContainer">
+{% if gameStatus == 'True' %}
+<p> Theres currently an active game!</p>
+        <a class="gameStatus" href="{% url 'gamePage' %}">Click here brudda</a>
+{% else %}
+<p>Theres no active game. Make yo team brudda</p>
+        {% endif %}
+    <div2/>
 <script src="{% static 'js/teamSelection.js' %}"></script>
 
 

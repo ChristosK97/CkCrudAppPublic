@@ -29,5 +29,19 @@ h1 {
 
 
 
+.activeGameContainer {
+  background-color: #7FDBFF;
+  color: red;
+  width: 100px;
+  border: 15px solid grey;
+  padding: 50px;
+  margin: 20px;
+  position:absolute;
+  left: 70%;
+  bottom: 55%;
 
+}
+a.activeGameContainer {
+  color: #D19936;
+}
 
