@@ -9,6 +9,12 @@ from django.contrib.auth.decorators import login_required
 def teamSelection(request):
 
     return render(request, 'teamSelection.html')
+@login_required()
+def alternateSelection(request):
+    playerList = players.objects.values_list('name', flat=True)
+    data = list(playerList)
+    return render(request, 'alternateSelection.html', {'completeList': data})
+
 
 def getPlayers(request):
     playerList = players.objects.values_list('name')
@@ -38,6 +44,10 @@ def gamePage(request):
     t1tagList = []
     t2playerList = []
     teamNames = []
+    t1Points = []
+    t2Points = []
+    t1playerPoints = []
+    t2playerPoints = []
     if request.method == 'POST':
         gameDict = request.POST.items()
         for label, player in gameDict:
@@ -49,7 +59,7 @@ def gamePage(request):
                 continue
             elif label.startswith('t1p'):
                 t1playerList.append(player)
-                t1tagList.append(label)
+                # t1tagList.append(label)
             elif label.startswith('t2p'):
                 t2playerList.append(player)
         while len(t2playerList) < 5:
@@ -58,6 +68,7 @@ def gamePage(request):
             t1playerList.append('None')
 
         if activeGame:
+
             activeGame.delete()
             activePlayers.delete()
             #delete rows in player scoreboard here
@@ -66,6 +77,15 @@ def gamePage(request):
                 team2=teamNames[1],
             )
             enterGame.save()
+
+            newGameId = activeGame.values('id')
+
+            enterTech = player_game_scoreboard(
+                player='Tech',
+                game=newGameId[0]['id'],
+                team=teamNames[0],
+            )
+            enterTech.save()
             for player in t1playerList:
                 if player == 'None':
                     continue
@@ -77,6 +97,14 @@ def gamePage(request):
 
                     )
                     enterPlayer.save()
+
+            enterSecondTech = player_game_scoreboard(
+                player='Tech',
+                game=newGameId[0]['id'],
+                team=teamNames[1],
+
+            )
+            enterSecondTech.save()
 
             for player in t2playerList:
                 if player == 'None':
@@ -99,6 +127,13 @@ def gamePage(request):
             team2=teamNames[1],
             )
             enterGame.save()
+            newGameId = activeGame.values('id')
+            enterTech = player_game_scoreboard(
+                player='Tech',
+                game=newGameId[0]['id'],
+                team=teamNames[0],
+            )
+            enterTech.save()
             for player in t1playerList:
                 if player == 'None':
                     continue
@@ -110,6 +145,13 @@ def gamePage(request):
 
                     )
                     enterPlayer.save()
+            enterSecondTech =player_game_scoreboard(
+                player='Tech',
+                game=newGameId[0]['id'],
+                team=teamNames[1],
+
+            )
+            enterSecondTech.save()
 
             for player in t2playerList:
                 if player == 'None':
@@ -123,16 +165,52 @@ def gamePage(request):
                     )
                     enterPlayer.save()
 
+        # print(t1playerList)
+        #
+        # print(t2playerList)
+        # print(teamNames)
+        return render(request,'gamePage.html', {'t1players': t1playerList, 't2players': t2playerList, 'tnames': teamNames})
+
+    else:  # if Get request
+        if activeGame:
+            activePlayersNoTech = activePlayers.exclude(player='Tech').order_by('id')
+
+            playerLength = len(activePlayersNoTech)  #-2 maybe for the two techs if name is tech, pass exclude TECH
+            t1Name = ''
+            t2Name = ''
+            for playerData in activePlayersNoTech:
+                if (playerLength / 2) == len(t1playerList):
+                    t2playerList.append(playerData.player)
+                    t2Name = playerData.team
+                    t2playerPoints.append(playerData.points)
+                else:
+                    t1playerList.append(playerData.player)
+                    t1Name = playerData.team
+                    t1playerPoints.append(playerData.points)
+                # print(playerData)
+                # print(playerData.player)
+                # print(playerData.team)
+            while len(t1playerList) < 5:
+                t1playerList.append('None')
+                t1playerPoints.append(0)
+            while len(t2playerList) < 5:
+                t2playerList.append('None')
+                t2playerPoints.append(0)
+            teamNames.append(t1Name)
+            teamNames.append(t2Name)
+            print(teamNames)
+            print(t1playerList)
+            print(t2playerList)
+            print(t1playerPoints)
+            print(t2playerPoints)
+            return render(request, 'gamePage.html',
+                          {'t1players': t1playerList, 't2players': t2playerList, 'tnames': teamNames,
+                           't1playerPoints': t1playerPoints, 't2playerPoints': t2playerPoints})
+        else:
+            return redirect('/')
 
 
 
-
-
-
-
-
-
-    return render(request,'gamePage.html', {'t1players': t1playerList, 'tags': t1tagList, 't2players': t2playerList, 'tnames': teamNames})
 
 @login_required()
 @csrf_exempt
@@ -145,27 +223,43 @@ def dataRetrieval(request):
     #use gameid to update rows of player games that are active and change from is active to false
     if request.method == 'POST':
         body = json.loads(request.body)
+        enterTech = player_game_scoreboard.objects.filter(player='Tech', is_active=True)
+        enterTechFirst = enterTech.first()
+        enterTechSecond = enterTech.last()
+
+
+
 
 
 
         for keys,values in body.items():
             if keys == 'team1tech':
-                enterTech = player_game_scoreboard(
 
-                    player='Tech',
-                    points=values,
-                    is_active=False,
-                    game=gameId[0]['id'],
-                )
-                enterTech.save()
+                t1Name = enterTechFirst.team
+                enterTechFirst.points = values
+                enterTechFirst.is_active = False
+                enterTechFirst.save()
+                # enterTech = player_game_scoreboard(
+                #
+                #     player='Tech',
+                #     points=values,
+                #     is_active=False,
+                #     game=gameId[0]['id'],
+                # )
+                # enterTech.save()
             elif keys == 'team2tech':
-                enterTech = player_game_scoreboard(
-                    player='Tech',
-                    points=values,
-                    is_active=False,
-                    game=gameId[0]['id'],
-                )
-                enterTech.save()
+                t2Name = enterTechSecond.team
+                enterTechSecond.points = values
+                enterTechSecond.is_active = False
+                enterTechSecond.save()
+
+                # enterTech = player_game_scoreboard(
+                #     player='Tech',
+                #     points=values,
+                #     is_active=False,
+                #     game=gameId[0]['id'],
+                # )
+                # enterTech.save()
             elif keys == 'gameNumber':
                 continue
             else:
@@ -184,6 +278,7 @@ def dataRetrieval(request):
                     newPlayer.points = 0
                     newPlayer.game = int((gameId[0]['id']) + 1)
                     newPlayer.save()
+
 
 
                 else:
@@ -209,6 +304,25 @@ def dataRetrieval(request):
             newGame.pk = None
             newGame.is_active = True
             newGame.save()
+
+            newTech = player_game_scoreboard(
+                points=0,
+                game=int((gameId[0]['id'])),
+                team=t1Name,
+                player='Tech',
+                is_active=True
+            )
+            newTech.save()
+
+            newTech1 = player_game_scoreboard(
+                points=0,
+                game=int((gameId[0]['id'])),
+                team=t2Name,
+                player='Tech',
+                is_active=True
+            )
+            newTech1.save()
+
         else:
             newGame.is_active = False
             newGame.save()  # saving game to be done
@@ -259,3 +373,56 @@ def stats(request):
 
 
     return render(request, 'stats.html', {'completeList': completeList})
+
+@csrf_exempt
+def postUpdatePoints(request):
+    if request.is_ajax:
+        requestedData = request.body.decode("utf-8")
+        new = json.loads(requestedData)
+        # print(type(new))
+        print(new['player'])
+        print(new['points'])
+        print(new['team'])
+        playerName = new['player']
+        playerPoints = new['points']
+        playerTeam = new['team']
+        player_game_scoreboard.objects.filter(player=playerName, team= playerTeam, is_active=True).update(
+            points=playerPoints,
+        )
+
+    return HttpResponse('no sir')
+
+@csrf_exempt
+def ajaxUpdatePoints(request):
+    if request.is_ajax:
+        t1Points = []
+        t2Points = []
+        techScores = []
+        activePlayers = player_game_scoreboard.objects.filter(is_active=True).order_by('id')
+        activePlayersNoTech = activePlayers.exclude(player='Tech')
+        activePlayersTech = activePlayers.filter(player='Tech')
+        playerLength = len(activePlayersNoTech)
+        for player in activePlayersNoTech:
+            print(player.player)
+            print(player.points)
+            if (playerLength / 2) == len(t1Points):
+                t2Points.append(player.points)
+
+            else:
+                t1Points.append(player.points)
+
+        while len(t1Points) < 5:
+
+
+            t1Points.append(0)
+        while len(t2Points) < 5:
+
+
+            t2Points.append(0)
+
+        for techPlayer in activePlayersTech:
+            techScores.append(techPlayer.points)
+
+        return JsonResponse({"t1pointsArray": t1Points, "t2pointsArray": t2Points, "techPoints": techScores})  # Pass scores of tech while passing players scores
+
+#view here for ajax call--- this page will render game page. very similar logic to gaempage. send same data, etc. Team name is experimental Team...

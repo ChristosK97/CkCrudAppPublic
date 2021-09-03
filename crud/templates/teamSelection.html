@@ -4,6 +4,7 @@
     <a class="active" href="{% url 'teamSelection' %}">Team Selection</a>
     <a class="active" href="{% url 'addPlayer' %}">Add Player</a>
     <a class="active" href="{% url 'stats' %}">Stats</a>
+    <a class="active" href="{% url 'alternateSelection' %}">alternateSelection</a>
 
 </div>
 
@@ -60,6 +61,7 @@
 <div>
   <input type="submit" value="Submit">
 </div>
+
 
 {% csrf_token %}
 </form>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="topnav">
+    <a class="active" href="{% url 'teamSelection' %}">Team Selection</a>
+    <a class="active" href="{% url 'addPlayer' %}">Add Player</a>
+    <a class="active" href="{% url 'stats' %}">Stats</a>
+    <a class="active" href="{% url 'alternateSelection' %}">alternateSelection</a>
+
+</div>
+
+{% load static %}
+<head>
+    <link rel="stylesheet" href="/static/css/alternateSelection.css">
+
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <meta charset="UTF-8">
+    <title>alternateSelection</title>
+</head>
+<body>
+<body oncontextmenu="return false;">
+<center>
+    <input type="radio" id="team1checkbox" name="teamcheckbox">
+    <label for="team1checkbox"> Team 1</label>
+    <input type="radio" id="team2checkbox" name="teamcheckbox">
+    <label for="team2checkbox"> Team 2</label>
+    </center>
+<div2 id="team1" class="team1Container">
+    <span class="team1Players">
+
+    </span>
+
+</div2>
+<div id="poolPlayers" class="poolContainer">
+    <span id="poolp" class="poolp">
+         {% for item in completeList %}
+     <button type="button" class="players" id="{{ item }}">{{ item }}</button>
+    <br>
+    {% endfor %}
+    </span>
+</div>
+
+
+<div3 id="team2" class="team2Container">
+    <span class="team2Players">
+
+    </span>
+</div3>
+
+<div4 id="submitbutton">
+  <input type="submit"  value="Submit">
+</div4>
+
+<div5>
+    <button type="button" id="yessir" onclick="brimster()">supertest</button>
+</div5>
+{% load static %}
+<script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+<script src="{% static 'js/alternateSelection.js' %}"></script>
+
+</body>
+</html>

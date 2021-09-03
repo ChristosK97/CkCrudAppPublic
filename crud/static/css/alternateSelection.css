@@ -1,0 +1,33 @@
+
+.team1Container {
+  background-color: lightgrey;
+  width: 100px;
+  border: 15px solid blue;
+  padding: 50px;
+  margin: 20px;
+  position:absolute;
+  left: 15%;
+  bottom: 40%;
+}
+.team2Container {
+  background-color: yellow;
+  width: 100px;
+  border: 15px solid black;
+  padding: 50px;
+  margin: 20px;
+  position:absolute;
+  left: 75%;
+  bottom: 40%;
+
+}
+.poolContainer {
+  background-color: lightgrey;
+  width: 100px;
+  border: 15px solid blue;
+  padding: 50px;
+  margin: 20px;
+  position:absolute;
+  left: 45%;
+  bottom: 40%;
+}
+
